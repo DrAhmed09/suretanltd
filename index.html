@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Suretan ltd</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+    /* Custom shape for the image */
+    body{
+      font-family: "Poppins", sans-serif;
+    }
+    html {
+            scroll-behavior: smooth;
+        }
+    
+    .custom-shape {
+      clip-path: ellipse(75% 50% at 50% 50%);
+    }
+
+    .service-card {
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .service-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+    
+
+
+    .about-container{
+      background-color: #CCE6D3;
+
+    }
+    .about-overlay {
+      border-radius: 8px;
+      padding: 2rem;
+    }
+    .about-link{
+      background-color: #FF6000;
+    }
+    .highlight-text {
+      color: #FF6000; /* Tailwind's green-500 */
+    }
+
+
+
+
+    .slideshow-container {
+      position: relative;
+      max-width: 100%;
+      margin: auto;
+      overflow: hidden;
+      border-radius: 10px;
+    }
+
+    .slide {
+      display: none;
+    }
+
+    .active-slide {
+      display: block;
+    }
+
+    /* Mask for low-quality images */
+    .image-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+
+    .slide img {
+      width: 100%;
+      height: 500px;
+      object-fit: cover;
+      filter: brightness(0.7); /* Make low-quality images look better */
+    }
+
+    /* Text inside the slideshow */
+    .slide-text {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      color: white;
+      font-size: 1.5rem;
+      font-weight: bold;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    }
+
+    /* Next & previous buttons */
+    .prev, .next {
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      width: auto;
+      padding: 16px;
+      margin-top: -22px;
+      color: white;
+      font-weight: bold;
+      font-size: 18px;
+      border-radius: 0 3px 3px 0;
+      user-select: none;
+    }
+
+    .next {
+      right: 0;
+      border-radius: 3px 0 0 3px;
+    }
+
+    .prev {
+      left: 0;
+      border-radius: 3px 3px 0 0;
+    }
+
+    .prev:hover, .next:hover {
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+  </style>
+</head>
+<body class="bg-white">
+   <!-- Navbar -->
+   <nav class="bg-white shadow-lg">
+    <div class="container mx-auto px-8 py-4 flex justify-between items-center">
+      <!-- Logo -->
+      <div class="flex items-center">
+        <a href="#" >
+          <img src="logooo.jpg" class="h-20 w-22" alt="Logo" class="h-10 w-14 mr-2">
+        </a>
+      </div>
+
+      <!-- Menu Links -->
+      <div class="hidden md:flex space-x-8 ">
+        <a href="#" class="text-gray-800 hover:text-yellow-500 font-medium">Home</a>
+        <a href="#about" class="text-gray-800 hover:text-yellow-500 font-medium">About Us</a>
+        <a href="#services" class="text-gray-800 hover:text-yellow-500 font-medium">Services</a>
+        <a href="#contact" class="text-gray-800 hover:text-yellow-500 font-medium">Contact</a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <div class="md:hidden">
+        <button id="menu-toggle" class="text-gray-800 text-2xl focus:outline-none">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu Links -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg">
+      <a href="#" class="block px-4 py-2 text-gray-800 hover:text-yellow-500 font-medium">Home</a>
+      <a href="#about" class="block px-4 py-2 text-gray-800 hover:text-yellow-500 font-medium">About Us</a>
+      <a href="#services" class="block px-4 py-2 text-gray-800 hover:text-yellow-500 font-medium">Services</a>
+      <a href="#contact" class="block px-4 py-2 text-gray-800 hover:text-yellow-500 font-medium">Contact</a>
+    </div>
+  </nav>
+
+  <script>
+    // Toggle mobile menu visibility
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    menuToggle.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+  </script>
+
+<section class="relative bg-cover bg-center" style="background-image: url('bg-image.jpeg');">
+  <div class="absolute inset-0 bg-black bg-opacity-60"></div> <!-- Dark overlay -->
+  <div class="container mx-auto px-4 py-20 relative z-10 text-white text-center">
+    <h1 class="text-5xl font-semibold mb-6">Growing the Future of Agriculture</h1>
+    <p class="text-base font-medium mb-8">Agricultural Commodities Consultants, Producers, Processors, Traders, and Suppliers.</p>
+    <a href="#services" class="bg-green-600 hover:bg-green-700 text-white font-medium py-3 px-6 rounded-full transition">Discover Our Services</a>
+  </div>
+</section>
+
+
+  
+
+    <!-- Crop Solutions Section -->
+<section class="py-12 px-6 bg-gray-100">
+  <!-- Section Title -->
+  <h2 class="text-2xl font-semibold text-center text-gray-800 mb-12">Our Products</h2>
+
+  <!-- Content Grid -->
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+    
+    <!-- First Block -->
+    <div class="bg-white p-6 shadow-lg rounded-lg text-center">
+      <img src="frenchbeans.jpg" alt="Coffee variety" class="w-full h-60 object-cover mb-4 rounded-t-lg">
+      <h3 class="text-xl font-semibold text-green-600">French Beans</h3>
+     
+    </div>
+
+  
+    <!-- Second Block -->
+    <div class="bg-white p-6 shadow-lg rounded-lg text-center">
+      <img src="red-chilli.jpeg" alt="Downy Mildew" class="w-full h-60 object-cover mb-4 rounded-t-lg">
+      <h3 class="text-xl font-semibold text-green-600">Red Chilli(Teja)</h3>
+     
+    </div>
+
+    <!-- Third Block -->
+    <div class="bg-white p-6 shadow-lg rounded-lg text-center">
+      <img src="image3.jpeg" alt="Tree Tomato Production" class="w-full h-60 object-cover mb-4 rounded-t-lg">
+      <h3 class="text-xl font-semibold text-green-600">Green Chilli</h3>
+      
+    </div>
+
+  </div>
+</section>
+
+
+<!-- About Us Section -->
+<section id="about" class="about-bg py-20 ">
+    <div class="about-container mx-auto px-4">
+      <div class="flex flex-col lg:flex-row items-center justify-between">
+        <div class="lg:w-1/2 lg:pr-8">
+          <div class="about-overlay">
+            <h2 class="text-4xl font-bold mb-4">About <span class="highlight-text">Suretan Ltd.</span></h2>
+            <p class="text-lg leading-relaxed mb-6">
+              <span class="highlight-text">Suretan Ltd.</span> is a leading agricultural commodities company specializing in consultancy, production, processing, trading, and supply. Located in the heart of Rwanda’s agricultural hub, Bugesera District, we are committed to delivering high-quality agricultural products and services to meet the demands of our clients locally and internationally.
+            </p>
+            <a href="#contact" class="about-link inline-block py-3 px-6 text-white rounded-lg font-semibold transition-transform transform hover:scale-105">Get in Touch</a>
+          </div>
+        </div>
+        <div class="lg:w-1/2 mt-8 lg:mt-0">
+          <img src="bg-image.jpeg" alt="Modern Agriculture" class="w-full h-auto  shadow-xl">
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  
+
+
+
+<!-- Vision & Mission Section -->
+<section class="py-12 px-6 bg-green-50">
+  <!-- Section Container -->
+  <div class="max-w-7xl mx-auto text-center">
+    <!-- Vision Block -->
+    <div class="mb-12">
+      <h2 class="text-4xl font-bold text-green-700 mb-6">Our Vision</h2>
+      <p class="text-gray-700 text-lg leading-relaxed">
+        The Beacon of quality products provision to consumers at affordable prices, while ensuring fair returns to the producers.
+      </p>
+    </div>
+
+    <!-- Mission Block -->
+    <div class="bg-white p-8 shadow-lg rounded-lg">
+      <h3 class="text-3xl font-semibold text-green-700 mb-4">Our Mission</h3>
+      <p class="text-gray-700 text-lg leading-relaxed">
+        Stay to serve our farmers & our consumers.
+      </p>
+    </div>
+  </div>
+</section>
+
+ <!-- Services Section -->
+ <section id="services" class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <h2 class="text-2xl font-semibold text-center mb-12">Our Services</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        
+        <!-- Consultancy in Agricultural Commodities -->
+        <div class="service-card bg-gray-50 p-6 rounded-lg shadow-md flex flex-col items-center text-center">
+          <i class="fas fa-tractor fa-3x mb-4 text-green-500"></i>
+          <h3 class="text-xl font-semibold mb-2">Consultancy in Agricultural Commodities</h3>
+          <p class="text-gray-600">Expert advice to optimize your agricultural commodity investments and strategies.</p>
+        </div>
+
+        <!-- Production and Processing of Agricultural Goods -->
+        <div class="service-card bg-gray-50 p-6 rounded-lg shadow-md flex flex-col items-center text-center">
+          <i class="fas fa-seedling fa-3x mb-4 text-green-500"></i>
+          <h3 class="text-xl font-semibold mb-2">Production and Processing of Agricultural Goods</h3>
+          <p class="text-gray-600">High-quality production and processing services for a range of agricultural products.</p>
+        </div>
+
+        <!-- Trading and Supplying Agricultural Products -->
+        <div class="service-card bg-gray-50 p-6 rounded-lg shadow-md flex flex-col items-center text-center">
+          <i class="fas fa-truck fa-3x mb-4 text-green-500"></i>
+          <h3 class="text-xl font-semibold mb-2">Trading and Supplying Agricultural Products</h3>
+          <p class="text-gray-600">Reliable trading and supply chain solutions for various agricultural products.</p>
+        </div>
+
+        <!-- Custom Solutions for Agricultural Businesses -->
+        <div class="service-card bg-gray-50 p-6 rounded-lg shadow-md flex flex-col items-center text-center">
+          <i class="fas fa-cogs fa-3x mb-4 text-green-500"></i>
+          <h3 class="text-xl font-semibold mb-2">Custom Solutions for Agricultural Businesses</h3>
+          <p class="text-gray-600">Tailored solutions to meet the specific needs of your agricultural business.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+<!-- CEO Section -->
+<section class="bg-gray-100 py-12">
+  <div class="container mx-auto text-center">
+      <!-- Section Title -->
+      <h2 class="text-4xl font-bold text-gray-800 mb-6">Meet Our CEO</h2>
+      <!-- CEO Details -->
+      <div class="flex flex-col items-center">
+          <!-- Placeholder for CEO's Image -->
+          <div class="w-40 h-40 rounded-full bg-gray-300 mb-4">
+              <!-- Image placeholder, replace this with actual image when available -->
+              <img src="blank.webp" alt="CEO Image" class="w-full h-full rounded-full object-cover">
+          </div>
+          <!-- CEO Name -->
+          <h3 class="text-2xl font-semibold text-gray-800">Dr. Ahmed Yesufu</h3>
+          <!-- CEO Position -->
+          <p class="text-gray-600 mb-4">Chief Executive Officer</p>
+          <!-- Contact Info -->
+          <div class="flex justify-center space-x-6">
+              <!-- Email -->
+              <a href="mailto:dr.ahmed@suretanltd.com" class="text-gray-800 hover:text-yellow-500 flex items-center">
+                  <i class="fas fa-envelope mr-2"></i>
+                  dr.ahmed@suretanltd.com
+              </a>
+              <!-- LinkedIn -->
+              <a href="https://www.linkedin.com/in/ahmed-yesufu-4a8464a/" target="_blank" class="text-gray-800 hover:text-yellow-500 flex items-center">
+                  <i class="fab fa-linkedin mr-2"></i>
+                  LinkedIn Profile
+              </a>
+          </div>
+      </div>
+  </div>
+</section>
+
+
+
+  <!-- YouTube Section -->
+  <section class="py-12 px-6">
+    <div class="container mx-auto text-center">
+        <!-- Section Title -->
+        <h2 class="text-3xl font-bold text-green-600 mb-6">Discover Our Farm</h2>
+        <!-- Description -->
+        <p class="text-lg text-gray-700 mb-8 max-w-3xl mx-auto">
+          Experience the heart of sustainable farming at Suretan Ltd. Explore our fields and see firsthand how we nurture the land to produce top-quality crops for communities around the world.
+        </p>
+        <!-- YouTube Video -->
+        <div class="relative overflow-hidden pb-9/16 mb-8">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/gHdypO1mk24?si=n3wTAvdvBl1FBw4f" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>        </div>
+      
+    </div>
+</section>
+
+
+<!-- Slideshow Section -->
+<section class="py-12">
+  <div class="container mx-auto px-4">
+    <h2 class="text-3xl bold text-gray-800 text-center mb-8">Explore Our Farm </h2>
+
+    <div class="slideshow-container shadow-lg">
+      <!-- Slide 1 -->
+      <div class="slide active-slide">
+        <img src="french.jpeg" alt="Product 1">
+        <div class="image-overlay"></div>
+        <div class="slide-text">French beans</div>
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="slide">
+        <img src="red.jpeg" alt="Product 2">
+        <div class="image-overlay"></div>
+        <div class="slide-text">Red chilli(Teja)</div>
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="slide">
+        <img src="image3.jpeg" alt="Product 3">
+        <div class="image-overlay"></div>
+        <div class="slide-text">Green chilli</div>
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="slide">
+        <img src="farm.jpeg" alt="Product 2">
+        <div class="image-overlay"></div>
+        <div class="slide-text">farm</div>
+      </div>
+        <!-- Slide 2 -->
+        <div class="slide">
+          <img src="pic1.jpg" alt="Product 2">
+          <div class="image-overlay"></div>
+        </div>
+          <!-- Slide 2 -->
+      <div class="slide">
+        <img src="pic2.jpg" alt="Product 2">
+        <div class="image-overlay"></div>
+      </div>
+     
+        <!-- Slide 2 -->
+        <div class="slide">
+          <img src="pic3.jpg" alt="Product 2">
+          <div class="image-overlay"></div>
+        </div>
+
+
+      <!-- Navigation Buttons -->
+      <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+      <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    </div>
+  </div>
+</section>
+
+<script>
+  let slideIndex = 0;
+  const slides = document.querySelectorAll('.slide');
+
+  function showSlides(n) {
+    if (n > slides.length - 1) {
+      slideIndex = 0;
+    }
+    if (n < 0) {
+      slideIndex = slides.length - 1;
+    }
+    slides.forEach((slide, i) => {
+      slide.style.display = (i === slideIndex) ? 'block' : 'none';
+    });
+  }
+
+  function plusSlides(n) {
+    slideIndex += n;
+    showSlides(slideIndex);
+  }
+
+  // Auto-show the first slide
+  showSlides(slideIndex);
+
+  // Auto-switch slides every 5 seconds
+  setInterval(() => {
+    plusSlides(1);
+  }, 5000);
+</script>
+
+
+
+
+      <section id="contact">
+
+        <div class="bg-green-900 py-6 px-8">
+            <div class="max-w-md ml-10">
+              <h2 class="text-xl font-normal text-white mb-8">Contact</h2>
+          
+              <!-- Local Sales -->
+              <div class="flex items-center mb-6">
+                <i class="fas fa-phone-alt text-yellow-500 mr-4 text-lg"></i>
+                <span class="text-white">
+                 <a href="tel:+250792527774" class="hover:underline">+250 792 527 774</a>
+                </span>
+              </div>
+          
+              
+          
+              <!-- Email -->
+              <div class="flex items-center mb-6">
+                <i class="fas fa-envelope text-yellow-500 mr-4 text-lg"></i>
+                <span class="text-white">
+                  <a href="mailto:dr.ahmed@suretanltd.com" class="hover:underline"> dr.ahmed@suretanltd.com</a>
+                </span>
+              </div>
+          
+              <!-- Address -->
+              <div class="flex items-center">
+                <i class="fas fa-map-marker-alt text-yellow-500 mr-4 text-lg"></i>
+                <span class="text-white">
+                  Bugesera District, Eastern Province, Rwanda
+                </span>
+              </div>
+            </div>
+            <p class="mt-5 text-center mx-auto text-[#e3cece]">Copyright 2024 @suretanltd</p>
+
+          </div>
+
+      </section>
+
+</body>
+</html>
